@@ -41,4 +41,7 @@ public class ItemMenuPage extends BasePage{
     @FindBy(xpath = "//div[@class=\"bFlatButton mMicro mWhite\"]")
     public WebElement done;
 
+    @FindBy(xpath = ".//div[@id = 'facetControl_brand']//*[@class = 'eFilterList_OptionLink']")
+    public List<WebElement> brands;
+
 }

@@ -24,7 +24,7 @@ public class MainOzonStep {
         } catch (Exception e) {
             System.out.println("Not popup");
         } finally {
-            BaseStep.getDriver().manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+            BaseStep.getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         }
 
     }

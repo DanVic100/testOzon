@@ -5,6 +5,8 @@ import cucumber.api.java.ru.Когда;
 import cucumber.api.java.ru.Тогда;
 import org.junit.Assert;
 
+import java.util.List;
+
 
 public class ScenarioStep {
     MainOzonStep mainOzonStep = new MainOzonStep();
@@ -34,11 +36,20 @@ public class ScenarioStep {
         electronicStep.getManuItem(str);
     }
 
-    @Когда("^производтитель (.+)$")
+   /* @Когда("^производтитель (.+)$")
     public void выбираем_производителя(String str) throws Throwable {
 
         itemMenuStep.getMaker(str);
-    }
+    }*/
+
+  //предложенный варант выбора бренда
+   @Когда("^выбраны производители (.+)$")
+   public void selectBrands(String brands) {
+       String[] brandss = brands.split(",");
+       for (String brand : brandss)
+           itemMenuStep.stepSelectBrand(brand);
+   }
+
 
 
 
@@ -68,8 +79,8 @@ public class ScenarioStep {
     @Тогда("^проверяем корзина пуста$")
     public void проверяем_корзина_пуста() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        cartStep.deleteProducts();
-        Assert.assertFalse("Карзина не пуста",cartStep.booleanProductCart());
+        boolean empty = cartStep.isEmpty();
+        Assert.assertFalse("Карзина не пуста",empty);
     }
 
     @Когда("^нажимаем на Удалить")

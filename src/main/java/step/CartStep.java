@@ -2,17 +2,13 @@ package step;
 
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import page.CartPage;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class CartStep {
 
@@ -44,6 +40,18 @@ public class CartStep {
     }
 
     @Step("Удаление продуктов из карзины")
+    public void deleteProducts(){
+
+       cartPage.removeAll();
+    }
+
+    @Step("проверка пустоты корзины")
+    public boolean isEmpty()
+    {
+        if (cartPage.emptyCart.isDisplayed()){return false;}else{return true;}
+    }
+
+  /*  @Step("Удаление продуктов из карзины")
     public void deleteProducts()
     {
         WebDriverWait wait = new WebDriverWait(BaseStep.getDriver(),20);
@@ -53,5 +61,5 @@ public class CartStep {
         cartPage.closeButton.click();
         List<WebElement> getsProdduct = BaseStep.getDriver().findElements(By.xpath("//*[@id=\"PageCenter\"]//div[class='eCartItem_name']"));
         Assert.assertTrue("Корзина не пуста",(getsProdduct.size() == 0));
-    }
+    }*/
 }
